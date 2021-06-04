@@ -13,13 +13,7 @@ const ProductList = (props) => {
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [productDetails, setProductDetails] = useState();
 
-
     const data = props.productList;
-    console.log('props.productList: ', props.productList);
-
-    // const editProduct = (record) => {
-    //     console.log('wioqw', record);
-    // }
 
     const toggleDeleteProductModal = (record) => {
         setIsDeleteModalVisible(!isDeleteModalVisible);
@@ -38,20 +32,8 @@ const ProductList = (props) => {
                 <Column title="Name" dataIndex="name" key="name" />
                 <Column title="price" dataIndex="price" key="price" />
                 <Column title="description" dataIndex="description" key="description" />
-                <Column
-                    title="Tags"
-                    dataIndex="tags"
-                    key="tags"
-                    render={(tags) => (
-                        <>
-                            {tags && tags.map((tag) => (
-                                <Tag color="blue" key={tag}>
-                                    {tag}
-                                </Tag>
-                            ))}
-                        </>
-                    )}
-                />
+                <Column title="discount" dataIndex="discount" key="discount" />
+                <Column title="available" dataIndex="available" key="available" />
                 <Column
                     title="Action"
                     key="action"

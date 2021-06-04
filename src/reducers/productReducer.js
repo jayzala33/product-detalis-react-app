@@ -5,7 +5,6 @@ const initialState = {
 }
 
 const ProductReducer = (state = initialState, action) => {
-  console.log('action: ', action.payload);
   switch (action.type) {
     case ProductActions.PRODUCT_ADD: {
       const { product } = action.payload;

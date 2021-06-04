@@ -30,6 +30,8 @@ const DeleteProduct = (props) => {
         <div>Product Name : {props.productDetails.name}</div>
         <div>Product Price : {props.productDetails.price}</div>
         <div>Product Description : {props.productDetails.description}</div>
+        <div>Product Discount : {props.productDetails.discount}</div>
+        <div>Product Available : {props.productDetails.available}</div>
         <Button type="primary" onClick={onDelete}>
           Delete Product
         </Button>

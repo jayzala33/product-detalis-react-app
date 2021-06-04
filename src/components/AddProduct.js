@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux'
-import { Form, Modal, Input, InputNumber, Button } from 'antd';
+import { Form, Modal, Input, InputNumber, Button, Checkbox, Radio, Space } from 'antd';
 import * as productActions from '../actions/productActions'
 
 const { TextArea } = Input;
 
 const AddProduct = (props) => {
   const { visible } = props;
+  const [isCheckbox, setIsCheckbox] = useState(false);
+  const [isRadioChange, setIsRadioChange] = useState('available')
 
   const handleCancel = () => {
     props.toggleAddUserModal();
+  };
+
+  const onChangeCheckbox = (e) => {
+    setIsCheckbox(e.target.checked)
+  };
+
+  const onChangeRadio = (e) => {
+    setIsRadioChange(e.target.value,)
   };
 
   const onFinish = (values) => {
@@ -95,6 +105,26 @@ const AddProduct = (props) => {
             ]}
           >
             <InputNumber />
+          </Form.Item>
+          <div style={{ marginLeft: '116px' }}>
+            <Checkbox onChange={onChangeCheckbox} />
+          </div>
+          <Form.Item
+            name={['product', 'discount']}
+            label="discount"
+            rules={[{ type: 'number', }]}
+          >
+            {isCheckbox && <InputNumber />}
+          </Form.Item>
+          <Form.Item
+            name={['product', 'available']}
+            label="Available"
+            initialValue={'available'}
+          >
+            <Radio.Group onChange={onChangeRadio} value={isRadioChange} >
+              <Radio value={'available'}>Yes</Radio>
+              <Radio value={'not-available'}>No</Radio>
+            </Radio.Group>
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button type="primary" htmlType="submit">

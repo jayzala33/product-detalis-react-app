@@ -27,24 +27,24 @@ const Main = (props) => {
   return (
     <div className='main'>
       {login ?
-        <div>
-          <div className='logout'>
-            <Button type="primary" danger onClick={logout}>
-              Log Out
+      <div>
+        <div className='logout'>
+          <Button type="primary" danger onClick={logout}>
+            Log Out
           </Button>
-          </div>
-          <h1>Product Details</h1>
-          <div className='addProduct'>
-            <Button type="primary" onClick={toggleAddUserModal}>
-              Add Product
-          </Button>
-          </div>
-          <ProductList />
-          {isModalVisible && <AddProduct visible={isModalVisible} toggleAddUserModal={toggleAddUserModal} />}
         </div>
-        :
-        <Login allowsLogin={allowsLogin} />
-      }
+        <h1>Product Details</h1>
+        <div className='addProduct'>
+          <Button type="primary" onClick={toggleAddUserModal}>
+            Add Product
+          </Button>
+        </div>
+        <ProductList />
+        {isModalVisible && <AddProduct visible={isModalVisible} toggleAddUserModal={toggleAddUserModal} />}
+      </div>
+      :
+         <Login allowsLogin={allowsLogin} />
+       }
 
     </div>
   );

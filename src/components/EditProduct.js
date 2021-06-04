@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux'
-import { Form, Modal, Input, InputNumber, Button } from 'antd';
+import { Form, Modal, Input, InputNumber, Button, Radio } from 'antd';
 import * as productActions from '../actions/productActions'
 
 const { TextArea } = Input;
 
 const EditProduct = (props) => {
   const { visible } = props;
+  const [isRadioChange, setIsRadioChange] = useState(props.productDetails.available)
 
   const handleCancel = () => {
     props.toggleEditProductModal();
   };
 
   const onFinish = (values) => {
-    console.log('values: ', values);
     const { productEdit } = props
     productEdit(values)
     props.toggleEditProductModal();
+  };
+
+  const onChangeRadio = (e) => {
+    setIsRadioChange(e.target.value,)
   };
 
   const layout = {
@@ -63,7 +67,7 @@ const EditProduct = (props) => {
               },
             ]}
           >
-            <InputNumber disabled/>
+            <InputNumber disabled />
           </Form.Item>
           <Form.Item
             name={['product', 'name']}
@@ -100,6 +104,24 @@ const EditProduct = (props) => {
             ]}
           >
             <InputNumber />
+          </Form.Item>
+          <Form.Item
+            name={['product', 'discount']}
+            label="discount"
+            initialValue={props.productDetails.discount}
+            rules={[{ type: 'number', }]}
+          >
+            <InputNumber />
+          </Form.Item>
+          <Form.Item
+            name={['product', 'available']}
+            label="Available"
+            initialValue={props.productDetails.available}
+          >
+            <Radio.Group onChange={onChangeRadio} value={isRadioChange} >
+              <Radio value={'available'}>Yes</Radio>
+              <Radio value={'not-available'}>No</Radio>
+            </Radio.Group>
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button type="primary" htmlType="submit">

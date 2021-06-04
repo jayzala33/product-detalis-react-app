@@ -6,7 +6,6 @@ import { Form, Input, Button, Typography } from 'antd';
 const { Text } = Typography;
 const Login = (props) => {
   const [isLogIn, setIsLogIn] = useState(null);
-  console.log('isLogIn: ', isLogIn);
 
   const layout = {
     labelCol: {
