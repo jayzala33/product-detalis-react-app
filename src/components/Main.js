@@ -7,8 +7,11 @@ import AddProduct from './AddProduct'
 import { TextField } from '@material-ui/core';
 import Login from './Login';
 // import './index.css';
+import { useHistory } from "react-router-dom";
 
 const Main = (props) => {
+  let history = useHistory();
+  console.log('history: ', history);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [login, setLogin] = useState(false);
 
@@ -27,24 +30,24 @@ const Main = (props) => {
   return (
     <div className='main'>
       {login ?
-      <div>
-        <div className='logout'>
-          <Button type="primary" danger onClick={logout}>
-            Log Out
+        <div>
+          <div className='logout'>
+            <Button type="primary" danger onClick={logout}>
+              Log Out
           </Button>
-        </div>
-        <h1>Product Details</h1>
-        <div className='addProduct'>
-          <Button type="primary" onClick={toggleAddUserModal}>
-            Add Product
+          </div>
+          <h1>Product Details</h1>
+          <div className='addProduct'>
+            <Button type="primary" onClick={toggleAddUserModal}>
+              Add Product
           </Button>
+          </div>
+          <ProductList />
+          {isModalVisible && <AddProduct visible={isModalVisible} toggleAddUserModal={toggleAddUserModal} />}
         </div>
-        <ProductList />
-        {isModalVisible && <AddProduct visible={isModalVisible} toggleAddUserModal={toggleAddUserModal} />}
-      </div>
-      :
-         <Login allowsLogin={allowsLogin} />
-       }
+        :
+        <Login allowsLogin={allowsLogin} />
+      }
 
     </div>
   );

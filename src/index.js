@@ -6,12 +6,23 @@ import reportWebVitals from './reportWebVitals';
 import ProductReducer from './reducers/productReducer';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import New from './New';
 
 const store = createStore(ProductReducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}><App /></Provider>
+    <Provider store={store}>
+      <Router>
+        <Link to="/app">App</Link>
+        <Link to="/new">New</Link>
+        <Switch>
+          <Route path="/new" component={New} />
+          <Route path="/" component={App} />
+        </Switch>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
